@@ -10,8 +10,12 @@ public class SheepSpawner : MonoBehaviour
     public float timeBetweenSpawns ;
     private List<GameObject> sheepList = new List<GameObject>(); // 5
 
+    private float rand;
     public GameObject GoldenSheepPrefab; 
-    public float GoldenChance = 0.2f; //10% de que salga una oveja dorada
+    public GameObject enemySheepPrefab; 
+    public float GoldenChance = 0.05f; //20% de que salga una oveja dorada
+    public float EnemyChance = 0.2f; //20% de que salga una oveja enemiga
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,11 +31,16 @@ public class SheepSpawner : MonoBehaviour
     {
         Vector3 randomPosition = sheepSpawnPositions [Random.Range(0,sheepSpawnPositions.Count)].position; // 1
         GameObject sheep;
-        if (Random.value < GoldenChance) //si sale una oveja dorada
+        rand = Random.value; 
+        if (rand < GoldenChance) //si sale una oveja dorada
         {
             sheep = Instantiate(GoldenSheepPrefab, randomPosition, sheepPrefab.transform.rotation);
         }
-        else //si NO sale una oveja dorada
+        else if (rand < GoldenChance + EnemyChance) //si sale una oveja enemiga
+        {
+            sheep = Instantiate(enemySheepPrefab, randomPosition, sheepPrefab.transform.rotation);
+        }
+        else //si NO sale una oveja dorada o enemiga
         {
             sheep = Instantiate(sheepPrefab, randomPosition, sheepPrefab.transform.rotation);
         }

@@ -944,6 +944,7 @@ MonoBehaviour:
   shootClip: {fileID: 8300000, guid: afd9aad0b8c4b1141856b4808d8ea172, type: 3}
   sheepHitClip: {fileID: 8300000, guid: e97ab3d76ee31794ba31802a0f2a719e, type: 3}
   sheepDroppedClip: {fileID: 8300000, guid: d396aafd153ba394982f2aa1349363de, type: 3}
+  EnemySheepsound: {fileID: 8300000, guid: 2c0ff303986418b47868365c33dd38c8, type: 3}
 --- !u!1 &1487282441
 GameObject:
   m_ObjectHideFlags: 0
@@ -1211,7 +1212,10 @@ MonoBehaviour:
   timeBetweenSpawns: 2
   GoldenSheepPrefab: {fileID: 7553354625883827402, guid: 260871c2e9093354cb9e1a79221ae6ca,
     type: 3}
+  enemySheepPrefab: {fileID: 6419616389296314058, guid: 2f926c802adc05f4e985b07c93130f5a,
+    type: 3}
   GoldenChance: 0.5
+  EnemyChance: 0.2
 --- !u!4 &1712582560
 Transform:
   m_ObjectHideFlags: 0

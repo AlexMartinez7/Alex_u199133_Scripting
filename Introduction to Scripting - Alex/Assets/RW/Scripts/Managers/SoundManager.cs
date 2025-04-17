@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip sheepHitClip; // 3
     public AudioClip sheepDroppedClip; // 4
 
+    public AudioClip EnemySheepsound; // 5
     private Vector3 cameraPosition; // 5
 
     // Start is called before the first frame update
@@ -38,6 +39,10 @@ public class SoundManager : MonoBehaviour
         PlaySound(sheepDroppedClip);
     }
 
+    public void PlayEnemySheepSound()
+    {
+        PlaySound(EnemySheepsound);
+    }
     // Update is called once per frame
     void Update()
     {

@@ -26,7 +26,7 @@ public class HayMachine : MonoBehaviour
     public GameObject redModelPrefab;
 
     private bool Penetrante = false; //flag del power up
-    private float PenetranteDuration = 3f;
+    private float PenetranteDuration = 5f;
     private void Start()
     {
         LoadModel(); 

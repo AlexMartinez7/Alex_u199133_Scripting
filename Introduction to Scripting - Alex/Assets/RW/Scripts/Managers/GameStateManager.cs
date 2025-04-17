@@ -46,6 +46,12 @@ public class GameStateManager : MonoBehaviour
             UIManager.Instance.ShowPenetranteMessage(); // activamos el mensaje del power up        
         }
     }
+
+    public void enemySheepSaved()
+    {
+        sheepSaved--;
+        UIManager.Instance.UpdateSheepSaved();
+    }
     private void GameOver()
     {
         sheepSpawner.canSpawn = false; // 1

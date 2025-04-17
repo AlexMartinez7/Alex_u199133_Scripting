@@ -17,11 +17,11 @@ public class Sheep : MonoBehaviour
 
     public float heartOffset; // 1
     public GameObject heartPrefab; // 2
-
+    public GameObject xPrefab;
     private bool dropped = false;
 
     public bool isGolden = false; //flag para la oveaja dorada
-    
+    public bool isEnemy = false; //flag para la oveja enemiga
 
     // Start is called before the first frame update
     void Start()
@@ -42,17 +42,32 @@ public class Sheep : MonoBehaviour
         runSpeed = 0;
 
         Destroy(gameObject, gotHayDestroyDelay);
-        Instantiate(heartPrefab, transform.position + new Vector3(0, heartOffset, 0), Quaternion.identity);
         TweenScale tweenScale = gameObject.AddComponent<TweenScale>();; // 1
         tweenScale.targetScale = 0; // 2
         tweenScale.timeToReachTarget = gotHayDestroyDelay; // 3
-        SoundManager.Instance.PlaySheepHitClip();
+        
         if (isGolden) 
-        {
+        {   
+            SoundManager.Instance.PlaySheepHitClip();
+            Instantiate(heartPrefab, transform.position + new Vector3(0, heartOffset, 0), Quaternion.identity);
             GameStateManager.Instance.GoldenSheepSaved(); // sumamos al contador de ovejas doradas del manager
+            GameStateManager.Instance.SavedSheep(); // sumamos al contador de ovejas normales del manager
             GameStateManager.Instance.SavedSheep();//la contamos doble
         }
-        GameStateManager.Instance.SavedSheep();
+        else if (isEnemy) 
+        {   
+            SoundManager.Instance.PlayEnemySheepSound();
+            GameStateManager.Instance.enemySheepSaved(); // sumamos al contador de ovejas enemigas del manager
+            GameObject cross = Instantiate(xPrefab, transform.position + new Vector3(0, heartOffset, 0), Quaternion.identity);
+            Destroy(cross, 0.5f); // Destruir el objeto después de 1 segundo
+        }
+        else {
+            SoundManager.Instance.PlaySheepHitClip();
+            Instantiate(heartPrefab, transform.position + new Vector3(0, heartOffset, 0), Quaternion.identity);
+            GameStateManager.Instance.SavedSheep(); // sumamos al contador de ovejas normales del manager
+        }
+       
+
 
 
     }
